@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+    <h3>Random {{ language }} Names</h3>
+
+    <table class="table">
+
+        {% for i in range(gridsize.y) %}
+            <tr>
+                {% for j in range(gridsize.x) %}
+                    <td>
+                        {{ names[i * gridsize.x + j] }}
+                    </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+
+    </table>
+
+{% endblock %}
