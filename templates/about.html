@@ -1,0 +1,96 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+    <h3>About Name Generator</h3>
+
+    <div class="about">
+        <p>
+            Welcome to Name Generator, my final project for CS50x!
+
+        </p>
+        <p>
+            Name Generator is a program that uses a
+            <a href="https://en.wikipedia.org/wiki/Markov_chain" target=_blank>Markov chain
+            <span class="material-symbols-outlined">open_in_new</span></a>
+            to generate random names.&nbsp; Markov chains are essentially a way to choose a random next
+            state based on the previous state.&nbsp; However, instead of simply choosing random states,
+            a Markov chain takes a large set of training data as input.&nbsp; It processes this input,
+            and then chooses each next state based on the probabilities found in the training data.&nbsp;
+            As it relates to Name Generator, the input is a corpus of thousands of names in the selected
+            language.&nbsp; Each letter in the name is a state, and as the program generates the name, each
+            new letter is chosen based on the previous letter.
+        </p>
+        <p>
+            Here's an example using three common English words: <code>bat</code>, <code>bay</code>, and
+            <code>bug</code>.&nbsp; To process these names, you simply write down each letter that
+            occurs in the corpus, along with each letter which follows that letter.&nbsp; In this case,
+            you get:
+        </p>
+        <div class="code-table">
+            <table>
+                <tbody>
+                    <tr>
+                        <td>b | a, a, u</td>
+                    </tr>
+                    <tr>
+                        <td>a | t, y</td>
+                    </tr>
+                    <tr>
+                        <td>t | .</td>
+                    </tr>
+                    <tr>
+                        <td>y | .</td>
+                    </tr>
+                    <tr>
+                        <td>u | g</td>
+                    </tr>
+                    <tr>
+                        <td>g | .</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p>
+            Notice that some possibilities are not letters.&nbsp; The period character (<code>.</code>)
+            is the end state, which marks the end of the word.&nbsp; Before processing the word, I add
+            the end state to the end of each name.&nbsp; Once the program chooses the end state, the word
+            ends, and no more letters are chosen.
+        </p>
+        <p>
+            Now that we have created this table of probabilities, we can start generating names.&nbsp;
+            We start by choosing a totally random starting state.&nbsp; For example, we may choose the
+            letter <code>b</code>.&nbsp; You can see that the <code>b</code> state has three possible
+            states following it: <code>a</code>, <code>a</code>, and <code>u</code>.&nbsp; This is
+            because, in the input text (<code>bat</code>, <code>bay</code>, <code>bug</code>), the letter
+            <code>b</code> appears three times, with those three letters following it in each case.&nbsp;
+            Now, we randomly choose the next state.&nbsp; <code>a</code> will be twice as likely to be
+            chosen as <code>u</code>.&nbsp; If <code>a</code> is chosen next, we next have two
+            possibilities: <code>t</code> and <code>y</code>.&nbsp; If <code>t</code> is chosen,
+            we now only have one choice, the end state.&nbsp; At this point, we have generated a totally
+            random word, <code>bay</code> from the input text, <code>bat</code>, <code>bay</code>,
+            <code>bug</code>.
+        </p>
+        <p>
+            In this case, the word is identical to one of the input words.&nbsp; That is always a
+            possibility, but it becomes much less likely once we start using a larger input text.&nbsp;
+            The inputs that my program uses are between 600 and 5,000 names, depending on how many I could
+            find.&nbsp; For example, using the German input, which has 2,281 names in it, we get much
+            more varied responses.&nbsp; For example, my program outputted five German names:
+            <code>Schöningen</code>, <code>Geln</code>, <code>Bauterbrüc</code>, <code>Werden</code>, and
+            <code>Nienhein</code>.&nbsp; Only one of those, <code>Schöningen</code>, already existed in
+            the input.
+        </p>
+    </div>
+
+    <p>
+        View the sourcecode for this project on
+        <a href="https://github.com/garrenb7/random-name-generator" target=_blank>
+            Github <span class="material-symbols-outlined">open_in_new</span>
+        </a>
+    </p>
+    <p>
+        <a href="/">Return to Name Generator</a>
+    </p>
+
+{% endblock %}

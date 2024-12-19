@@ -5,17 +5,21 @@
     <h3>Random {{ language }} Names</h3>
 
     <table class="table">
+        <tbody>
 
-        {% for i in range(gridsize.y) %}
-            <tr>
-                {% for j in range(gridsize.x) %}
-                    <td>
-                        {{ names[i * gridsize.x + j] }}
-                    </td>
-                {% endfor %}
-            </tr>
-        {% endfor %}
+            {% for i in range(grid_size.grid_y) %}
+                <tr>
+                    {% for j in range(grid_size.grid_x) %}
+                        <td>
+                            {{ names[i * grid_size.grid_x + j] }}
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
 
+        </tbody>
     </table>
+
+    {% include "form.html" %}
 
 {% endblock %}

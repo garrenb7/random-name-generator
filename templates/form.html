@@ -1,0 +1,45 @@
+<!-- User uses form below to choose a language to generate names in -->
+<form action="/names" method="post">
+    <!-- Get viewport dimensions -->
+    <input type="hidden" value="viewport_width" id="viewport_width" name="width">
+    <input type="hidden" value="viewport_height" id="viewport_height" name="height">
+
+    <!-- Get language -->
+    <select id="language" name="language" class="dropdown">
+        <option value="" class="dropdown-item" disabled selected>Choose a language</option>
+
+        {% for f, language in filenames.items() %}
+            {% if f == filename %}
+                <option value="{{ f }}" class="dropdown-item" selected>{{ language }}</option>
+            {% else %}
+                <option value="{{ f }}" class="dropdown-item">{{ language }}</option>
+            {% endif %}
+        {% endfor %}
+
+    </select>
+
+    <button type="submit" name="form" value="generate" class="btn btn-primary">Generate</button>
+</form>
+
+<!-- Get viewport dimensions for the form -->
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+        document.getElementById("viewport_width").value = window.innerWidth;
+        document.getElementById("viewport_height").value = window.innerHeight;
+    });
+</script>
+
+<!-- Prevents users from submitting the form with the default option selected -->
+<script>
+    document.querySelector("form").addEventListener("submit", function(event) {
+        if (!document.querySelector("#language").value) {
+            event.preventDefault();
+            alert("Please choose a language.");
+        }
+    });
+</script>
+
+<!-- Redirect to about.html -->
+<p>
+    <a href="/about">About Name Generator</a>
+</p>

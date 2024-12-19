@@ -1,7 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap');
+
+:root {
+    --code-background-color: #e0e0e0;
+    --code-text-color: #d63384;
+    --code-font: "Fira Code", monospace;
+}
+
 h3 {
     margin-bottom: 1em;
 }
 
+.about {
+    text-align: left;
+}
+
 .btn {
     margin: 1em;
+}
+
+.material-symbols-outlined {
+    font-size: 14px;
+    text-decoration: inherit;
+    text-underline-offset: 2px;
+}
+
+code {
+    background-color: var(--code-background-color);
+    border-radius: 0.2em;
+    margin: 0.1em;
+    padding: 0.1em;
+    font-family: var(--code-font);
+    font-weight: 500;
+    color: var(--code-text-color);
+}
+
+.code-table table {
+    background-color: var(--code-background-color);
+    display: inline-block;
+    font-family: var(--code-font);
+    color: var(--code-text-color);
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: none;
+    border-radius: 0.2em;
+    margin: 0.1em;
+    margin-left: 1.25em;
+    padding: 0.2em;
+}
+
+.code-table table, .code-table table td, .code-table table tr {
+    border: none;
+}
+
+.code-table td {
+    font-weight: 500;
 }
