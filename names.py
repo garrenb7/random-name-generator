@@ -65,7 +65,7 @@ def generate_name(names: tuple) -> str:
     # If next_letter is the endstate, end the word
     while True:
         next_letter = generate_next_letter(name, names)
-        if next_letter == "." or len(name) >= MAX_LENGTH:
+        if next_letter == ".":
             break
         else:
             name.append(next_letter)
@@ -110,7 +110,7 @@ def filter_name(name: str, names: list) -> bool:
 
     if name in names:
         return True
-    if len(name) <= 2:
+    if len(name) <= 2 or len(name) >= MAX_LENGTH:
         return True
     else:
         return False
